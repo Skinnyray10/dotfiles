@@ -50,7 +50,10 @@ run() {
 
 # --- 1. Dependencies ---------------------------------------------------
 install_deps_linux() {
-  run sudo pacman -S --needed --noconfirm stow neovim starship wezterm lazygit git-delta
+  # Package names live in packages/arch.txt (comments and blank lines ignored).
+  pkgs="$(grep -v '^#' "$DOTFILES/packages/arch.txt" | grep -v '^$' | tr '\n' ' ')"
+  # shellcheck disable=SC2086 # pkgs is intentionally split into words
+  run sudo pacman -S --needed --noconfirm $pkgs
   # ble.sh (inline suggestions for bash) is not in the Arch repos or the AUR.
   if [ ! -f "$HOME/.local/share/blesh/ble.sh" ]; then
     say "Building ble.sh from source into ~/.local"
@@ -71,8 +74,7 @@ install_deps_mac() {
     echo "Homebrew is required. Install it from https://brew.sh and run this again." >&2
     exit 1
   fi
-  run brew install stow neovim starship lazygit git-delta zsh-autosuggestions
-  run brew install --cask wezterm font-jetbrains-mono-nerd-font
+  run brew bundle --file="$DOTFILES/packages/Brewfile"
 }
 
 if [ "$INSTALL_DEPS" -eq 1 ]; then
@@ -116,10 +118,41 @@ for pkg in $PACKAGES; do backup_conflicts "$pkg"; done
 
 # --- 3. Link the packages with stow -----------------------------------
 say "Linking packages: $PACKAGES"
-mkdir -p "$HOME/.config"
+run mkdir -p "$HOME/.config"
+# Keep ~/.config/git a real folder so stow links only the config file. Otherwise
+# stow could link the whole folder into this repo, and the private config.local
+# would end up inside it.
+run mkdir -p "$HOME/.config/git"
 cd "$DOTFILES"
 # shellcheck disable=SC2086 # PACKAGES is intentionally split into words
 run stow -t "$HOME" $PACKAGES
+
+# --- 3b. Private git identity (never stored in the repo) ----------------
+# The shared git config includes ~/.config/git/config.local for name and email.
+setup_git_identity() {
+  identity="$HOME/.config/git/config.local"
+  [ -f "$identity" ] && return 0
+  say "Creating $identity (your private git identity, not tracked)"
+  if [ "$DRY_RUN" -eq 1 ]; then
+    echo "+ create $identity"
+    return 0
+  fi
+  name=""
+  email=""
+  if [ -t 0 ]; then
+    read -r -p "Git name: " name
+    read -r -p "Git email: " email
+  fi
+  {
+    echo "# Machine-specific git identity. NOT tracked in the dotfiles repo."
+    echo "[user]"
+    printf '\tname = %s\n\temail = %s\n' "$name" "$email"
+  } >"$identity"
+  if [ -z "$name" ] || [ -z "$email" ]; then
+    echo "Edit $identity and fill in your name and email." >&2
+  fi
+}
+setup_git_identity
 
 # --- 4. Hook the shell snippets into the shell rc file ----------------
 # Append a line to a file only if it is not already there.
@@ -132,7 +165,7 @@ ensure_line() {
 }
 
 if [ "$OS" = "Darwin" ]; then
-  ensure_line "$HOME/.zshrc" "source ~/.config/zsh/autosuggestions.zsh"
+  ensure_line "$HOME/.zshrc" "source ~/.config/zsh/init.zsh"
 else
   rc="$HOME/.bashrc"
   if [ -f "$rc" ] && ! grep -qF "blesh.bash" "$rc"; then
