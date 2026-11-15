@@ -1,0 +1,33 @@
+mode = "dark"
+
+# Cyberpunk: Edgerunners. Same palette as WezTerm, Neovim, Starship and lazygit
+# (see "Theme palette" in the dotfiles README).
+accent = "#fcee0a"
+selection = "#2a1840"
+muted = "#6b5b8a"
+
+background = "#0b0614"
+dark_background = "#080410"
+darker_background = "#05020a"
+lighter_background = "#1a1026"
+
+foreground = "#d9f6ff"
+dark_foreground = "#6b5b8a"
+light_foreground = "#b8d8e6"
+bright_foreground = "#ffffff"
+
+red = "#ff2a6d"
+yellow = "#fcee0a"
+orange = "#ff8a3d"
+green = "#05ffa1"
+cyan = "#00f0ff"
+blue = "#00b7ff"
+magenta = "#b026ff"
+brown = "#8a5a44"
+
+bright_red = "#ff5c8f"
+bright_yellow = "#fff566"
+bright_green = "#5cffc0"
+bright_cyan = "#7af7ff"
+bright_blue = "#4dcfff"
+bright_magenta = "#d17aff"

@@ -7,3 +7,7 @@
 config.local
 *.local
 .env
+
+# Wallpapers (copyrighted fan art must not go in a public repo). Put your own in
+# ~/.config/omarchy/backgrounds/<theme-slug>/ instead.
+omarchy/.config/omarchy/themes/*/backgrounds/
