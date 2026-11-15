@@ -1,0 +1,9 @@
+# Backups made by install.sh and Omarchy
+*.bak
+*.bak.*
+# macOS
+.DS_Store
+# Machine-specific or private files that must never be committed
+config.local
+*.local
+.env
