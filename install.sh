@@ -87,8 +87,11 @@ fi
 # A real folder that stow can fill (like ~/.config/lazygit) is kept, and we
 # only look inside it for colliding files.
 backup_path() {
-  src="$1"
-  target="$2"
+  # `local` matters: this function calls itself, and shared variables would be
+  # overwritten by the inner call.
+  local src="$1"
+  local target="$2"
+  local child
   [ -e "$target" ] || [ -L "$target" ] || return 0
   # Already linked to this repo (a previous run): nothing to do.
   if [ "$target" -ef "$src" ]; then return 0; fi
