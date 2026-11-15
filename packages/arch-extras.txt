@@ -1,0 +1,29 @@
+# Snapshot of personal apps explicitly installed on the Omarchy machine (Nov 2026).
+# Reference only: install.sh does NOT install these. Hardware, kernel and
+# Omarchy-managed packages are left out on purpose.
+# Regenerate the raw list with:  pacman -Qqen
+1password
+1password-cli
+alacritty
+clang
+claude-desktop
+dotnet-runtime-9.0
+firefox
+ghostty
+google-chrome
+kdenlive
+lazydocker
+libqalculate
+llvm
+minecraft-launcher
+obs-studio
+prismlauncher
+rust
+spotify
+steam
+typora
+voxtype-bin
+xmlstarlet
+xournalpp
+# AUR / foreign (pacman -Qqem):
+# herdr-app-desktop-bin

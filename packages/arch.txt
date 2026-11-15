@@ -1,0 +1,11 @@
+# Arch/Omarchy dependencies for these dotfiles (one package per line).
+# install.sh feeds this file to: pacman -S --needed
+# mise is not listed: Omarchy already installs it. ble.sh is built from source by install.sh.
+stow
+neovim
+starship
+wezterm
+lazygit
+git-delta
+github-cli
+tmux

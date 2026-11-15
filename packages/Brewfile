@@ -1,0 +1,13 @@
+# macOS dependencies for these dotfiles. Install with:  brew bundle --file=packages/Brewfile
+brew "stow"
+brew "neovim"
+brew "starship"
+brew "lazygit"
+brew "git-delta"
+brew "gh"
+brew "tmux"
+brew "mise"
+brew "zsh-autosuggestions"
+
+cask "wezterm"
+cask "font-jetbrains-mono-nerd-font"
