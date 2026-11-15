@@ -10,10 +10,4 @@ if vim.uv.fs_stat(omarchy_theme) then
   return dofile(omarchy_theme)
 end
 
-return {
-  { "folke/tokyonight.nvim", priority = 1000 },
-  {
-    "LazyVim/LazyVim",
-    opts = { colorscheme = "tokyonight-night" },
-  },
-}
+return require("config.edgerunners")
