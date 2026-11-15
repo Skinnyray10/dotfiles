@@ -1,8 +1,7 @@
 # Inline suggestions (grey ghost text) for zsh on macOS.
 #
 # Install once:  brew install zsh-autosuggestions
-# Usage: add this line to ~/.zshrc
-#   source ~/.config/zsh/autosuggestions.zsh
+# Loaded by ~/.config/zsh/init.zsh, which install.sh adds to ~/.zshrc.
 
 # Suggest from history first, then from normal completion.
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
