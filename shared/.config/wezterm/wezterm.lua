@@ -53,6 +53,12 @@ config.window_padding = { left = 12, right = 12, top = 10, bottom = 10 }
 config.window_decorations = is_mac and "RESIZE" or "NONE"
 config.inactive_pane_hsb = { saturation = 0.8, brightness = 0.6 }
 
+-- macOS: treat the Option key as Alt so tmux shortcuts like Alt+Enter work.
+if is_mac then
+  config.send_composed_key_when_left_alt_is_pressed = false
+  config.send_composed_key_when_right_alt_is_pressed = false
+end
+
 -- Cursor and bell -------------------------------------------------------
 config.default_cursor_style = "SteadyBlock"
 config.audible_bell = "Disabled"
