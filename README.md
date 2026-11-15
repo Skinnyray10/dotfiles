@@ -12,12 +12,13 @@ Theme: **Cyberpunk: Edgerunners** (neon yellow, cyan and hot pink on near-black)
 Each top-level folder is a Stow *package*. Its inner paths mirror your home
 directory.
 
-| Package   | Installed on | Contents |
-|-----------|--------------|----------|
-| `shared/` | both         | Neovim (LazyVim), WezTerm, Starship, lazygit |
-| `omarchy/`| Linux only   | default terminal, `ble.sh` inline suggestions for bash |
-| `mac/`    | macOS only   | `zsh-autosuggestions` setup |
-| `docs/`   | -            | personal reference notes (not linked anywhere) |
+| Package     | Installed on | Contents |
+|-------------|--------------|----------|
+| `shared/`   | both         | Neovim (LazyVim), WezTerm, Starship, lazygit, git, tmux, mise |
+| `omarchy/`  | Linux only   | Hyprland overrides, the Omarchy theme, default terminal, `ble.sh` inline suggestions for bash |
+| `mac/`      | macOS only   | zsh setup (completion, Starship, mise, `zsh-autosuggestions`) |
+| `packages/` | -            | `arch.txt` and `Brewfile` (what `install.sh` installs), `arch-extras.txt` (reference snapshot) |
+| `docs/`     | -            | personal reference notes (not linked anywhere) |
 
 For example, `shared/.config/wezterm/wezterm.lua` becomes
 `~/.config/wezterm/wezterm.lua`.
@@ -33,10 +34,11 @@ cd ~/dotfiles
 
 `install.sh` picks the right packages for the OS and then:
 
-1. Installs dependencies (`pacman` on Arch, Homebrew on macOS). Skip with `--no-deps`.
+1. Installs dependencies from `packages/` (`pacman` on Arch, `brew bundle` on macOS). Skip with `--no-deps`.
 2. Moves any file that would collide to `<name>.bak.<timestamp>`. It never overwrites.
 3. Links the packages with `stow -t ~`.
-4. Adds the shell snippet to `~/.bashrc` (Linux) or `~/.zshrc` (macOS), only if missing.
+4. Asks for your git name and email and stores them in `~/.config/git/config.local` (untracked).
+5. Adds the shell snippet to `~/.bashrc` (Linux) or `~/.zshrc` (macOS), only if missing.
 
 It is safe to run again: a second run changes nothing.
 
@@ -59,16 +61,52 @@ stow -D -t ~ mac           # remove a package's links
   Example: `~/.config/btop/btop.conf` goes to `shared/.config/btop/btop.conf`.
 - **See where a link points:** `readlink -f ~/.config/wezterm`.
 
+## Theme palette
+
+One palette, written by hand in each place. If you change a color, update all of them.
+
+| Role | Hex | Used for |
+|------|-----|----------|
+| background | `#0b0614` | terminal, editor, Omarchy background |
+| surface | `#1a1026` | raised areas, selection base |
+| selection | `#2a1840` | selected lines, time chip |
+| foreground | `#d9f6ff` | text |
+| muted | `#6b5b8a` | comments, inactive items |
+| yellow | `#fcee0a` | accent, cursor, active tab, git segment |
+| cyan | `#00f0ff` | keywords, language segments |
+| pink | `#ff2a6d` | red slot, directory segment |
+| purple | `#b026ff` | magenta slot, borders |
+| mint | `#05ffa1` | green slot, strings |
+| blue | `#00b7ff` | blue slot, functions |
+
+It lives in: `shared/.config/wezterm/wezterm.lua`, `shared/.config/nvim/lua/config/edgerunners.lua`,
+`shared/.config/starship.toml`, `shared/.config/lazygit/config.yml` and
+`omarchy/.config/omarchy/themes/cyberpunk-edgerunners/colors.toml`.
+
+### Omarchy theme
+
+```sh
+omarchy theme set cyberpunk-edgerunners   # apply
+omarchy theme set "Tokyo Night"           # go back
+```
+
+Wallpapers are **not** in the repo (the anime's art is copyrighted and this repo is
+public). Put your own in `~/.config/omarchy/backgrounds/cyberpunk-edgerunners/`.
+
 ## Notes
 
-- **Neovim theme:** `lua/plugins/theme.lua` loads Omarchy's current theme when
-  it exists and falls back to tokyonight elsewhere (for example on macOS).
+- **Neovim theme:** `lua/plugins/theme.lua` loads Omarchy's current theme when it
+  exists, and falls back to the Edgerunners palette elsewhere (for example on macOS).
 - **Neovim clipboard:** the tmux/SSH clipboard helper only loads on Linux.
-- **Inline suggestions:** `ble.sh` on bash (built from source by `install.sh`,
-  it is not in the Arch repos), `zsh-autosuggestions` on zsh. Press `Right Arrow`
-  to accept a suggestion.
+- **Inline suggestions:** `ble.sh` on bash (built from source by `install.sh`, it is
+  not in the Arch repos), `zsh-autosuggestions` on zsh. Press `Right Arrow` to accept.
 - **Terminal:** `omarchy/.config/xdg-terminals.list` makes WezTerm the default
   terminal on Omarchy.
+- **Hyprland:** only `bindings.lua`, `hyprland.lua` and `input.lua` are tracked.
+  `monitors.lua` is machine-specific. `omarchy refresh hyprland` can overwrite
+  these files, so check `git diff` afterwards.
+- **macOS Option key:** WezTerm treats Option as Alt on the Mac, so the tmux
+  `Alt` shortcuts work.
 
 ## Never commit
 
@@ -76,10 +114,11 @@ This repo is public. Keep these out of it:
 
 - Tokens and credentials (`gh` `hosts.yml`, `.env` files, `~/.claude.json`)
 - SSH keys and browser profiles
-- Your git identity. Keep `user.name` and `user.email` in an untracked
-  `~/.config/git/config.local` and load it with `[include]`.
+- Your git identity. It lives in the untracked `~/.config/git/config.local`.
+- Wallpapers you do not own.
 
 ## Status
 
 - Omarchy: tested.
 - macOS: scripts tested in a simulated home directory only. Not yet run on a real Mac.
+  Not yet verified there: the zsh init, tmux's `tmux-256color` terminfo, and the Option key setting.
