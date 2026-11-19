@@ -130,6 +130,23 @@ cd "$DOTFILES"
 # shellcheck disable=SC2086 # PACKAGES is intentionally split into words
 run stow -t "$HOME" $PACKAGES
 
+# --- 3a. Omarchy theme (Linux only) -----------------------------------
+# Edgerunners is an Omarchy theme: it styles Hyprland, the bar and the lock
+# screen. It is cloned (not copied here) and symlinked so its Lua files are kept.
+install_omarchy_theme() {
+  [ "$OS" = "Linux" ] || return 0
+  command -v omarchy >/dev/null 2>&1 || return 0
+  dir="$HOME/.local/share/omarchy-themes/edgerunners"
+  if [ ! -d "$dir" ]; then
+    say "Cloning the Edgerunners Omarchy theme"
+    run mkdir -p "$(dirname "$dir")"
+    run git clone --depth 1 https://github.com/Sothcheat/omarchy-edgerunners-theme.git "$dir"
+  fi
+  run ln -sfn "$dir" "$HOME/.config/omarchy/themes/edgerunners"
+  run omarchy theme set Edgerunners
+}
+install_omarchy_theme
+
 # --- 3b. Private git identity (never stored in the repo) ----------------
 # The shared git config includes ~/.config/git/config.local for name and email.
 setup_git_identity() {
