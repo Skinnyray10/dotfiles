@@ -13,3 +13,9 @@ config.local
 omarchy/.config/omarchy/themes/*/backgrounds/
 # ...but keep the ~/.local folder package (scripts live in shared/.local/bin)
 !.local
+
+# pi: credentials, sessions and caches must never be committed
+shared/.pi/agent/auth.json
+shared/.pi/agent/models-store.json
+shared/.pi/agent/sessions/
+shared/.pi/agent/themes/omarchy-*.json
