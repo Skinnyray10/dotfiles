@@ -11,6 +11,7 @@ background = #0b0614
 foreground = #d9f6ff
 cursor-color = #fcee0a
 cursor-text = #0b0614
+cursor-opacity = 1
 selection-background = #ff2a6d
 selection-foreground = #0b0614
 palette = 0=#1a1026
@@ -31,7 +32,7 @@ palette = 14=#7af7ff
 palette = 15=#ffffff
 
 # Window
-background-opacity = 0.92
+background-opacity = 0.85
 background-blur = 20
 window-padding-x = 12
 window-padding-y = 10

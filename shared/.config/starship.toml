@@ -29,10 +29,15 @@ $docker_context\
 [](fg:#05ffa1 bg:#2a1840)\
 $time\
 [ ](fg:#2a1840)\
+$line_break\
+$character\
 """
 
-# Disable the blank line at the start of the prompt
-# add_newline = false
+# Second line: a neon prompt arrow (yellow = ok, pink = last command failed).
+[character]
+success_symbol = "[❯](bold #fcee0a)"
+error_symbol = "[❯](bold #ff2a6d)"
+
 
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below

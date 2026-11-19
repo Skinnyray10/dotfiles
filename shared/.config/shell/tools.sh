@@ -43,3 +43,9 @@ alias ts='tmux-sessionizer'
 
 # mkcd: make a folder and enter it.
 mkcd() { mkdir -p "$1" && cd "$1" || return; }
+
+# Greeting: once per new terminal window, never inside tmux or scripts.
+if [ -t 1 ] && [ -z "${TMUX-}" ] && [ -z "${FASTFETCH_SHOWN-}" ] && command -v fastfetch >/dev/null 2>&1; then
+  export FASTFETCH_SHOWN=1
+  fastfetch
+fi
