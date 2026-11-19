@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Fuzzy-pick a project folder and jump to its tmux session (created if needed).
+#   tmux-sessionizer            pick with fzf
+#   tmux-sessionizer ~/Work/app open that folder directly
+# Roots to scan (one level deep): override with SESSIONIZER_ROOTS="dir1 dir2".
+set -euo pipefail
+
+roots="${SESSIONIZER_ROOTS:-$HOME/Work $HOME/Projects $HOME/Documents}"
+
+if [[ $# -ge 1 ]]; then
+  selected="$1"
+else
+  selected="$(
+    {
+      echo "$HOME/dotfiles"
+      echo "$HOME/.config"
+      for r in $roots; do
+        [[ -d $r ]] && find "$r" -mindepth 1 -maxdepth 1 -type d -not -name '.*'
+      done
+    } | fzf --prompt='project > ' --height=100% --reverse \
+      --preview 'eza --tree --level=1 --icons --color=always {} 2>/dev/null || ls {}'
+  )"
+fi
+[[ -n $selected ]] || exit 0
+
+name="$(basename "$selected" | tr . _)"
+
+if ! tmux has-session -t "=$name" 2>/dev/null; then
+  tmux new-session -ds "$name" -c "$selected"
+fi
+
+if [[ -n ${TMUX:-} ]]; then
+  tmux switch-client -t "=$name"
+else
+  tmux attach-session -t "=$name"
+fi

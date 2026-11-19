@@ -9,3 +9,9 @@ lazygit
 git-delta
 github-cli
 tmux
+fzf
+zoxide
+eza
+bat
+fd
+ripgrep

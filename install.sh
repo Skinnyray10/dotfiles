@@ -169,7 +169,9 @@ ensure_line() {
 
 if [ "$OS" = "Darwin" ]; then
   ensure_line "$HOME/.zshrc" "source ~/.config/zsh/init.zsh"
+  ensure_line "$HOME/.zshrc" "source ~/.config/shell/tools.sh"
 else
+  ensure_line "$HOME/.bashrc" "source ~/.config/shell/tools.sh"
   rc="$HOME/.bashrc"
   if [ -f "$rc" ] && ! grep -qF "blesh.bash" "$rc"; then
     say "Wiring ble.sh into $rc"
