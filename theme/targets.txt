@@ -1,0 +1,10 @@
+# template (in theme/templates)   ->  output (relative to repo root)
+ghostty-theme.conf.tpl            shared/.config/ghostty/theme.conf
+tmux-theme.conf.tpl               shared/.config/tmux/theme.conf
+fzf-colors.sh.tpl                 shared/.config/shell/colors.sh
+starship.toml.tpl                 shared/.config/starship.toml
+lazygit.yml.tpl                   shared/.config/lazygit/config.yml
+nvim-edgerunners.lua.tpl          shared/.config/nvim/lua/config/edgerunners.lua
+wezterm-palette.lua.tpl           shared/.config/wezterm/palette.lua
+fastfetch.jsonc.tpl               shared/.config/fastfetch/config.jsonc
+pi-cyberpunk.json.tpl             shared/.pi/agent/themes/cyberpunk.json

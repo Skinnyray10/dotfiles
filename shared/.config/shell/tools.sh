@@ -2,11 +2,8 @@
 # Works in bash and zsh. Sourced from ~/.bashrc (Linux) or ~/.zshrc (macOS).
 # On Omarchy, fzf/zoxide/eza are already wired by Omarchy's bash setup.
 
-# fzf colors (same palette as the terminal and Starship).
-export FZF_DEFAULT_OPTS="--height=60% --layout=reverse --border=rounded --info=inline \
---color=bg:#0b0614,bg+:#2a1840,fg:#d9f6ff,fg+:#ffffff,hl:#ff2a6d,hl+:#ff5c8f \
---color=border:#b026ff,header:#6b5b8a,info:#00f0ff,pointer:#fcee0a,marker:#05ffa1 \
---color=prompt:#fcee0a,spinner:#00f0ff,label:#b026ff,query:#d9f6ff"
+# fzf colors (generated from theme/palette.toml).
+[ -r ~/.config/shell/colors.sh ] && . ~/.config/shell/colors.sh
 
 # fd feeds fzf: fast, respects .gitignore, includes dotfiles.
 if command -v fd >/dev/null 2>&1; then

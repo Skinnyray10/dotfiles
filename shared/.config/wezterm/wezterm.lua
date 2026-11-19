@@ -8,18 +8,7 @@ local config = wezterm.config_builder()
 local is_mac = wezterm.target_triple:find("darwin") ~= nil
 
 -- Palette ---------------------------------------------------------------
-local p = {
-  bg = "#0b0614", -- night-city black with a purple tint
-  bg_alt = "#1a1026", -- raised surfaces (inactive tabs, selection)
-  fg = "#d9f6ff", -- cold white
-  yellow = "#fcee0a", -- David's jacket / Cyberpunk yellow
-  cyan = "#00f0ff", -- Lucy's neon
-  pink = "#ff2a6d", -- hot pink / magenta glow
-  purple = "#b026ff",
-  mint = "#05ffa1",
-  blue = "#00b7ff",
-  dim = "#6b5b8a", -- muted text
-}
+local p = dofile(wezterm.config_dir .. "/palette.lua") -- generated from theme/palette.toml
 
 -- Font ------------------------------------------------------------------
 config.font = wezterm.font("JetBrainsMono Nerd Font")
@@ -36,8 +25,8 @@ config.colors = {
   selection_fg = p.bg,
   split = p.purple,
   visual_bell = p.pink,
-  ansi = { p.bg_alt, p.pink, p.mint, p.yellow, p.blue, p.purple, p.cyan, p.fg },
-  brights = { p.dim, "#ff5c8f", "#5cffc0", "#fff566", "#4dcfff", "#d17aff", "#7af7ff", "#ffffff" },
+  ansi = p.ansi,
+  brights = p.brights,
   tab_bar = {
     background = p.bg,
     new_tab = { bg_color = p.bg, fg_color = p.cyan },

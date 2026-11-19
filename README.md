@@ -63,35 +63,45 @@ stow -D -t ~ mac           # remove a package's links
 
 ## Theme palette
 
-One palette, written by hand in each place. If you change a color, update all of them.
-
-| Role | Hex | Used for |
-|------|-----|----------|
-| background | `#0b0614` | terminal, editor, Omarchy background |
-| surface | `#1a1026` | raised areas, selection base |
-| selection | `#2a1840` | selected lines, time chip |
-| foreground | `#d9f6ff` | text |
-| muted | `#6b5b8a` | comments, inactive items |
-| yellow | `#fcee0a` | accent, cursor, active tab, git segment |
-| cyan | `#00f0ff` | keywords, language segments |
-| pink | `#ff2a6d` | red slot, directory segment |
-| purple | `#b026ff` | magenta slot, borders |
-| mint | `#05ffa1` | green slot, strings |
-| blue | `#00b7ff` | blue slot, functions |
-
-It lives in: `shared/.config/wezterm/wezterm.lua`, `shared/.config/nvim/lua/config/edgerunners.lua`,
-`shared/.config/starship.toml`, `shared/.config/lazygit/config.yml` and
-`omarchy/.config/omarchy/themes/cyberpunk-edgerunners/colors.toml`.
-
-### Omarchy theme
+One file holds every color: [`theme/palette.toml`](theme/palette.toml), taken from the
+[Edgerunners Omarchy theme](https://github.com/Sothcheat/omarchy-edgerunners-theme).
+`theme/generate.py` renders it into each app's config, so Linux and macOS match.
 
 ```sh
-omarchy theme set cyberpunk-edgerunners   # apply
-omarchy theme set "Tokyo Night"           # go back
+$EDITOR theme/palette.toml   # change a color
+theme/generate.py            # regenerate the files below
+theme/generate.py --check    # exit 1 if anything is out of date (good for CI)
+```
+
+Never edit the generated files. Edit the template in `theme/templates/` and add new
+outputs to `theme/targets.txt`. Generated files are committed, so a fresh Mac only
+needs `./install.sh` (no generator step).
+
+| Generated file | App |
+|----------------|-----|
+| `shared/.config/ghostty/theme.conf` | Ghostty |
+| `shared/.config/wezterm/palette.lua` | WezTerm |
+| `shared/.config/tmux/theme.conf` | tmux |
+| `shared/.config/shell/colors.sh` | fzf |
+| `shared/.config/starship.toml` | Starship |
+| `shared/.config/lazygit/config.yml` | lazygit |
+| `shared/.config/nvim/lua/config/edgerunners.lua` | Neovim |
+| `shared/.config/fastfetch/config.jsonc` | fastfetch |
+| `shared/.pi/agent/themes/cyberpunk.json` | pi |
+
+### Omarchy theme (Linux)
+
+`install.sh` clones the Edgerunners theme to `~/.local/share/omarchy-themes/edgerunners`
+and applies it. It styles Hyprland, the bar and the lock screen. Terminals follow
+`palette.toml`, not the Omarchy theme.
+
+```sh
+omarchy theme set Edgerunners   # apply
+omarchy theme set "Tokyo Night" # go back
 ```
 
 Wallpapers are **not** in the repo (the anime's art is copyrighted and this repo is
-public). Put your own in `~/.config/omarchy/backgrounds/cyberpunk-edgerunners/`.
+public). Put your own in `~/.config/omarchy/backgrounds/<theme-slug>/`.
 
 ## Notes
 

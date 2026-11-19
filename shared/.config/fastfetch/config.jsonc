@@ -3,12 +3,12 @@
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
     "type": "small",
-    "color": { "1": "38;2;252;238;10", "2": "38;2;0;240;255" },
+    "color": { "1": "38;2;241;230;7", "2": "38;2;3;209;234" },
     "padding": { "top": 1, "left": 2, "right": 3 }
   },
   "display": {
     "separator": "  ",
-    "color": { "keys": "38;2;176;38;255", "title": "38;2;255;42;109", "output": "38;2;217;246;255" }
+    "color": { "keys": "38;2;188;72;221", "title": "38;2;254;95;126", "output": "38;2;221;221;247" }
   },
   "modules": [
     "title",

@@ -1,0 +1,44 @@
+# Single source of truth for every color in these dotfiles.
+# Cyberpunk: Edgerunners, taken from https://github.com/Sothcheat/omarchy-edgerunners-theme
+# (colors.toml). Edit a value here, run `theme/generate.py`, commit the result.
+
+# Surfaces
+background = "#0B0C24"
+dark_background = "#06071A"
+darker_background = "#030310"
+lighter_background = "#141534"
+raised = "#1B1D45"            # chips, time segment, panels (not in the Omarchy theme)
+selection = "#003A56"
+
+# Text
+foreground = "#DDDDF7"
+dark_foreground = "#A0A2C1"
+light_foreground = "#C3C4E1"
+bright_foreground = "#F2F2FE"
+muted = "#717AAA"
+
+# Accents
+accent = "#FE5F7E"
+violet = "#BC48DD"            # focused-window border end, panel borders
+
+# ANSI colors
+red = "#FE5F7E"
+yellow = "#CBA501"
+orange = "#ED734D"
+green = "#06AE46"
+cyan = "#05A5BF"
+blue = "#5A96F9"
+magenta = "#D869EA"
+brown = "#A37A52"
+
+# Bright variants (the neon ones; used for prompt chips and accents)
+bright_red = "#FEA6BE"
+bright_yellow = "#F1E607"
+bright_green = "#41D968"
+bright_cyan = "#03D1EA"
+bright_blue = "#9CBFFE"
+bright_magenta = "#F5A1F9"
+
+# Tool backgrounds (pi)
+success_bg = "#0A2A22"
+error_bg = "#2E0F1C"
