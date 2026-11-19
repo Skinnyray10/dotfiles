@@ -1,0 +1,49 @@
+# Ghostty config shared between Omarchy (Linux) and macOS.
+# Theme: Cyberpunk: Edgerunners (same palette as wezterm.lua).
+# Machine-specific settings go in local.conf (loaded last, optional).
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-size = 10
+
+# Colors
+background = #0b0614
+foreground = #d9f6ff
+cursor-color = #fcee0a
+cursor-text = #0b0614
+selection-background = #ff2a6d
+selection-foreground = #0b0614
+palette = 0=#1a1026
+palette = 1=#ff2a6d
+palette = 2=#05ffa1
+palette = 3=#fcee0a
+palette = 4=#00b7ff
+palette = 5=#b026ff
+palette = 6=#00f0ff
+palette = 7=#d9f6ff
+palette = 8=#6b5b8a
+palette = 9=#ff5c8f
+palette = 10=#5cffc0
+palette = 11=#fff566
+palette = 12=#4dcfff
+palette = 13=#d17aff
+palette = 14=#7af7ff
+palette = 15=#ffffff
+
+# Window
+background-opacity = 0.92
+background-blur = 20
+window-padding-x = 12
+window-padding-y = 10
+confirm-close-surface = false
+resize-overlay = never
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Keys: send CSI-u so TUIs and tmux can tell these apart (tmux M-S-Enter).
+keybind = shift+enter=csi:13;2u
+keybind = alt+shift+enter=csi:13;4u
+
+config-file = ?"~/.config/ghostty/local.conf"
