@@ -1,6 +1,6 @@
 mode = "dark"
 
-# Cyberpunk: Edgerunners. Same palette as WezTerm, Neovim, Starship and lazygit
+# Cyberpunk: Edgerunners. Same palette as Neovim, Starship and lazygit
 # (see "Theme palette" in the dotfiles README).
 accent = "#fcee0a"
 selection = "#2a1840"

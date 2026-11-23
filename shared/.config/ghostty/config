@@ -1,10 +1,13 @@
 # Ghostty config shared between Omarchy (Linux) and macOS.
-# Theme: Cyberpunk: Edgerunners (same palette as wezterm.lua).
+# Theme: Cyberpunk: Edgerunners (palette in theme/palette.toml).
 # Machine-specific settings go in local.conf (loaded last, optional).
 
 # Font
-font-family = "JetBrainsMono Nerd Font"
+font-family = "Hack Nerd Font Mono"
 font-size = 10
+
+# macOS: Option acts as Alt (tmux Alt shortcuts); ignored on Linux.
+macos-option-as-alt = true
 
 # Colors live in theme.conf (generated from theme/palette.toml).
 config-file = theme.conf

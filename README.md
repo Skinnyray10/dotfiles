@@ -14,14 +14,14 @@ directory.
 
 | Package     | Installed on | Contents |
 |-------------|--------------|----------|
-| `shared/`   | both         | Neovim (LazyVim), WezTerm, Starship, lazygit, git, tmux, mise |
+| `shared/`   | both         | Neovim (LazyVim), Ghostty, Starship, lazygit, git, tmux, mise |
 | `omarchy/`  | Linux only   | Hyprland overrides, the Omarchy theme, default terminal, `ble.sh` inline suggestions for bash |
 | `mac/`      | macOS only   | zsh setup (completion, Starship, mise, `zsh-autosuggestions`) |
 | `packages/` | -            | `arch.txt` and `Brewfile` (what `install.sh` installs), `arch-extras.txt` (reference snapshot) |
 | `docs/`     | -            | personal reference notes (not linked anywhere) |
 
-For example, `shared/.config/wezterm/wezterm.lua` becomes
-`~/.config/wezterm/wezterm.lua`.
+For example, `shared/.config/ghostty/config` becomes
+`~/.config/ghostty/config`.
 
 ## Quick start
 
@@ -59,7 +59,7 @@ stow -D -t ~ mac           # remove a package's links
 - **Add a new config:** put it in the right package with the same path it has in
   `~`, then run `stow -t ~ <package>`.
   Example: `~/.config/btop/btop.conf` goes to `shared/.config/btop/btop.conf`.
-- **See where a link points:** `readlink -f ~/.config/wezterm`.
+- **See where a link points:** `readlink -f ~/.config/ghostty`.
 
 ## Theme palette
 
@@ -80,7 +80,6 @@ needs `./install.sh` (no generator step).
 | Generated file | App |
 |----------------|-----|
 | `shared/.config/ghostty/theme.conf` | Ghostty |
-| `shared/.config/wezterm/palette.lua` | WezTerm |
 | `shared/.config/tmux/theme.conf` | tmux |
 | `shared/.config/shell/colors.sh` | fzf |
 | `shared/.config/starship.toml` | Starship |
@@ -110,13 +109,13 @@ public). Put your own in `~/.config/omarchy/backgrounds/<theme-slug>/`.
 - **Neovim clipboard:** the tmux/SSH clipboard helper only loads on Linux.
 - **Inline suggestions:** `ble.sh` on bash (built from source by `install.sh`, it is
   not in the Arch repos), `zsh-autosuggestions` on zsh. Press `Right Arrow` to accept.
-- **Terminal:** `omarchy/.config/xdg-terminals.list` makes WezTerm the default
+- **Terminal:** `omarchy/.config/xdg-terminals.list` makes Ghostty the default
   terminal on Omarchy.
 - **Hyprland:** only `bindings.lua`, `hyprland.lua` and `input.lua` are tracked.
   `monitors.lua` is machine-specific. `omarchy refresh hyprland` can overwrite
   these files, so check `git diff` afterwards.
-- **macOS Option key:** WezTerm treats Option as Alt on the Mac, so the tmux
-  `Alt` shortcuts work.
+- **macOS Option key:** Ghostty is set to treat Option as Alt on the Mac
+  (`macos-option-as-alt`), so the tmux `Alt` shortcuts work.
 
 ## Never commit
 

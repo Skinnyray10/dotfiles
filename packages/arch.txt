@@ -4,7 +4,7 @@
 stow
 neovim
 starship
-wezterm
+ttf-hack-nerd
 lazygit
 git-delta
 github-cli
