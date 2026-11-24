@@ -16,8 +16,6 @@ dark_foreground = "#A0A2C1"
 light_foreground = "#C3C4E1"
 bright_foreground = "#F2F2FE"
 muted = "#717AAA"
-dim_3 = "#565C86"              # line numbers, indent guides (Monokai Spectrum dimmed3)
-dim_4 = "#3A3F66"              # inactive UI, ignored files (dimmed4)
 
 # Accents
 accent = "#FE5F7E"
