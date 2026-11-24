@@ -8,3 +8,4 @@ nvim-edgerunners.lua.tpl          shared/.config/nvim/lua/config/edgerunners.lua
 wezterm-palette.lua.tpl           shared/.config/wezterm/palette.lua
 fastfetch.jsonc.tpl               shared/.config/fastfetch/config.jsonc
 pi-cyberpunk.json.tpl             shared/.pi/agent/themes/cyberpunk.json
+windows-terminal.json.tpl         windows/edgerunners.windows-terminal.json
